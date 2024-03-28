@@ -1,10 +1,10 @@
 import { type ReactNode, useState, useEffect } from "react";
 
-export type UseMarkdownOptions = {
+export interface UseMarkdownOptions {
   value?: string;
   href?: string;
   children?: ReactNode;
-};
+}
 
 export const useMarkdown = ({ value, children, href }: UseMarkdownOptions) => {
   const [content, setContent] = useState<string>(value || (typeof children === "string" ? children : ""));
@@ -34,5 +34,5 @@ export const useMarkdown = ({ value, children, href }: UseMarkdownOptions) => {
 
   return {
     content,
-  }
+  };
 }

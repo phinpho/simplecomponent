@@ -15,5 +15,5 @@ export const useHandler = () => {
   return {
     data,
     yaml,
-  }
+  };
 }

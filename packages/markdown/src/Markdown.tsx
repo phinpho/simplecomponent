@@ -6,14 +6,14 @@ import remarkParseFrontmatter from "remark-parse-frontmatter";
 import { useMarkdown } from './useMarkdown';
 import { useHandler } from './useHandler';
 
-export type MarkdownProps = PropsWithChildren<{
+export interface MarkdownProps extends PropsWithChildren, AriaAttributes {
   className?: string;
   components?: Parameters<typeof ReactMarkdown>[0]["components"];
   AfterDataComponent?: ComponentType<{ data: object }>;
   BeforeDataComponent?: ComponentType<{ data: object }>;
   href?: string;
   value?: string;
-}> & AriaAttributes;
+}
 
 export const Markdown = forwardRef(
   function Markdown({

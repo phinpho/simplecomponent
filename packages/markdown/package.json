@@ -21,13 +21,18 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint . --ignore-path ../../.gitignore",
     "prepack": "yarn install --immutable && yarn build",
     "build": "tsc --build --verbose"
   },
   "devDependencies": {
     "@types/react": "^18.2.73",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
     "react": "^18.2.0",
-    "typescript": "^5.4.3"
+    "typescript": "*",
+    "typescript-eslint": "*"
   },
   "peerDependencies": {
     "react": "^18.2.0"
