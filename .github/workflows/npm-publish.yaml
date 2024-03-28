@@ -2,7 +2,7 @@ name: Node.js Package Publish
 
 on:
   release:
-    type: [created]
+    types: [published]
 
 jobs:
   build:
