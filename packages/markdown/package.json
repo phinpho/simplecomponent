@@ -16,7 +16,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "prepack": "yarn install --immutable && yarn build",
+    "build": "tsc --build --verbose"
   },
   "devDependencies": {
     "@types/react": "^18.2.73",
