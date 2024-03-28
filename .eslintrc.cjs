@@ -1,4 +1,3 @@
-/* eslint-env node */
 module.exports = {
   extends: [
     "eslint:recommended",
@@ -6,6 +5,7 @@ module.exports = {
     "plugin:@typescript-eslint/stylistic",
   ],
   parser: "@typescript-eslint/parser",
+  exclude: [".eslintrc.cjs"],
   parserOptions: {
     project: ["./tsconfig.json", "./packages/*/tsconfig.json"],
     tsconfigRootDir: __dirname,
