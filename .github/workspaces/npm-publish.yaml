@@ -1,0 +1,28 @@
+name: Node.js Package Publish
+
+on:
+  release:
+    type: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: "package.json"
+
+      - name: Install dependencies
+        run: yarn --immutable
+
+      - name: Build
+        run: yarn workspaces foreach -A --topological-dev run build
+
+      - name: Publish
+        run: yarn workspaces foreach -A --no-private npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

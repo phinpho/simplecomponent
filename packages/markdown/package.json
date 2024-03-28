@@ -2,6 +2,16 @@
   "name": "@simplecomponent/markdown",
   "description": "React component for rendering markdown content with configurable options",
   "version": "0.0.0",
+  "author": {
+    "name": "Rodolfo Pereira",
+    "email": "phinpho@gmail.com",
+    "url": "https://phinpho.github.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phinpho/simplecomponent.git",
+    "directory": "packages/markdown"
+  },
   "type": "module",
   "main": "dist/index.js",
   "files": [
@@ -9,11 +19,6 @@
     "README.md"
   ],
   "types": "dist/index.d.ts",
-  "author": {
-    "name": "Rodolfo Pereira",
-    "email": "phinpho@gmail.com",
-    "url": "https://phinpho.github.io"
-  },
   "license": "MIT",
   "scripts": {
     "prepack": "yarn install --immutable && yarn build",
@@ -32,5 +37,9 @@
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.0",
     "remark-parse-frontmatter": "^1.0.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
