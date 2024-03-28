@@ -1,4 +1,14 @@
 {
   "name": "simple-component",
+  "description": "React components made simple",
+  "private": true,
+  "version": "0.0.1",
+  "engine": {
+    "node": ">=20.0.0",
+    "yarn": ">=4.0.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
   "packageManager": "yarn@4.1.1"
 }
