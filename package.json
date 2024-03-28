@@ -2,13 +2,18 @@
   "name": "simple-component",
   "description": "React components made simple",
   "private": true,
-  "version": "0.0.1",
-  "engine": {
-    "node": ">=20.0.0",
-    "yarn": ">=4.0.0"
+  "version": "0.0.0",
+  "author": {
+    "name": "Rodolfo Pereira",
+    "email": "phinpho@gmail.com",
+    "url": "https://phinpho.github.io"
   },
   "workspaces": [
     "packages/*"
   ],
+  "engine": {
+    "node": ">=20.0.0",
+    "yarn": ">=4.0.0"
+  },
   "packageManager": "yarn@4.1.1"
 }

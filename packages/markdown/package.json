@@ -1,0 +1,20 @@
+{
+  "name": "@simple-component/markdown",
+  "description": "React component for rendering markdown content with configurable options",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "Rodolfo Pereira",
+    "email": "phinpho@gmail.com",
+    "url": "https://phinpho.github.io"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.3"
+  }
+}
