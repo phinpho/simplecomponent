@@ -1,5 +1,5 @@
 {
-  "name": "@simple-component/markdown",
+  "name": "@simplecomponent/markdown",
   "description": "React component for rendering markdown content with configurable options",
   "version": "0.0.0",
   "type": "module",

@@ -1,4 +1,4 @@
-# simple-component
+# simplecomponent
 
 React components made simple.
 

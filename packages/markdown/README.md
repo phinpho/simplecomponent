@@ -1,4 +1,4 @@
-# @simple-component/markdown
+# @simplecomponent/markdown
 
 React component for rendering markdown content with configurable options.
 
@@ -7,14 +7,14 @@ React component for rendering markdown content with configurable options.
 <details>
   <summary>NPM</summary>
   ```bash
-  npm install @simple-component/markdown
+  npm install @simplecomponent/markdown
   ```
 </details>
 
 <details>
   <summary>Yarn</summary>
   ```bash
-  yarn add @simple-component/markdown
+  yarn add @simplecomponent/markdown
   ```
 </details>
 
@@ -24,7 +24,7 @@ Simple usage of the `Markdown` component passing the content as the children pro
 
 ```jsx
 import React from "react";
-import { Markdown } from "@simple-component/markdown";
+import { Markdown } from "@simplecomponent/markdown";
 
 const App = () => {
   return <Markdown># Hello World</Markdown>;
@@ -35,7 +35,7 @@ Using the `value` property to pass the markdown content.
 
 ```jsx
 import React from "react";
-import { Markdown } from "@simple-component/markdown";
+import { Markdown } from "@simplecomponent/markdown";
 
 const App = () => {
   return <Markdown value={"# Hello World"} />;
