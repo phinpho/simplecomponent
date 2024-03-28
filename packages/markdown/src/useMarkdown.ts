@@ -14,11 +14,20 @@ export const useMarkdown = ({ value, children, href }: UseMarkdownOptions) => {
     if (href && !loaded) {
       fetch(href).then((response) => {
         if (response.ok) {
-          response.text().then((text) => setContent(text));
+          response.text().then((text) => {
+            setContent(text)
+            setLoaded(true);
+          }).catch((error: unknown) => {
+            setLoaded(true)
+            throw new Error(`Failed to parse markdown text from "${href}"`, { cause: error });
+          });
         } else {
+          setLoaded(true);
           throw new Error(`Failed to fetch markdown from "${href}"`);
         }
+      }).catch((error: unknown) => {
         setLoaded(true);
+        throw new Error(`Failed to fetch markdown from "${href}"`, { cause: error });
       });
     }
   }, [href, loaded, setContent]);
