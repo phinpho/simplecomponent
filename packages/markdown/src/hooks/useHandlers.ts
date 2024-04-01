@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
-import { extractFrontmatterObject } from "./extractFrontmatterData";
+import { extractFrontmatterObject } from "../lib/extractFrontmatterObject";
 
-export const useHandler = () => {
+export const useHandlers = () => {
   const [data, setData] = useState<object>({});
 
   const yaml = useCallback(

@@ -1,50 +1,87 @@
-import { type ComponentType, type ForwardedRef, type PropsWithChildren, forwardRef, type AriaAttributes } from 'react';
-import { default as ReactMarkdown } from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { type ComponentType } from "react";
+import { default as ReactMarkdown } from "react-markdown";
+import remarkGfm from "remark-gfm";
 import remarkFrontMatter from "remark-frontmatter";
 import remarkParseFrontmatter from "remark-parse-frontmatter";
-import { useMarkdown } from './useMarkdown';
-import { useHandler } from './useHandler';
+import { useMarkdown } from "./hooks/useMarkdown";
+import { useHandlers } from "./hooks/useHandlers";
 
-export interface MarkdownProps extends PropsWithChildren, AriaAttributes {
-  className?: string;
-  components?: Parameters<typeof ReactMarkdown>[0]["components"];
-  AfterDataComponent?: ComponentType<{ data: object }>;
-  BeforeDataComponent?: ComponentType<{ data: object }>;
+type ReactMarkdownProps = Parameters<typeof ReactMarkdown>[0];
+
+/**
+ * The properties of the `Markdown` component.
+ *
+ * @remarks
+ *
+ * It extends the original properties of the {@link ReactMarkdown | `Markdown`} component from the `react-markdown` library.
+ *
+ * @see {@link https://www.npmjs.com/package/react-markdown}
+ */
+export interface MarkdownProps extends ReactMarkdownProps {
+  /**
+   * The URL to fetch the markdown content from.
+   */
   href?: string;
+
+  /**
+   * The markdown content to render (can be used instead of `children`)
+   */
   value?: string;
+
+  /**
+   * The component rendered after the markdown, it receives the extracted data from the frontmatter as a `data` prop
+   */
+  AfterDataComponent?: ComponentType<{ data: object }>;
+
+  /**
+   * The component rendered before the markdown, it receives the extracted from the frontmatter as a `data` prop
+   */
+  BeforeDataComponent?: ComponentType<{ data: object }>;
 }
 
-export const Markdown = forwardRef(
-  function Markdown({
-    className,
-    href,
-    value,
-    components,
-    AfterDataComponent,
-    BeforeDataComponent,
-    children,
-    ...props
-  }: MarkdownProps, ref: ForwardedRef<HTMLDivElement>) {
-    const { content } = useMarkdown({ value, children, href });
-    const { data, yaml } = useHandler();
+/**
+ * Renders the markdown content
+ *
+ * @param props The {@link MarkdownProps}
+ * @returns The markdown component extended with the {@link MarkdownProps.AfterDataComponent | `AfterDataComponent`} or {@link MarkdownProps.BeforeDataComponent | `BeforeDataComponent`} components
+ *
+ * @see {@link https://www.npmjs.com/package/react-markdown}
+ */
+export const Markdown = ({
+  href,
+  value,
+  AfterDataComponent,
+  BeforeDataComponent,
+  children,
+  remarkPlugins,
+  remarkRehypeOptions,
+  ...props
+}: MarkdownProps) => {
+  const { content } = useMarkdown({ value, children, href });
+  const { data, yaml } = useHandlers();
 
-    return (
-      <div className={className} ref={ref} {...props}>
-        {BeforeDataComponent && data && (<BeforeDataComponent data={data} />)}
-        <ReactMarkdown
-          components={components}
-          remarkPlugins={[
-            remarkGfm,
-            [remarkFrontMatter, { type: "yaml", marker: "-" }],
-            remarkParseFrontmatter,
-          ]}
-          remarkRehypeOptions={{ handlers: { yaml }}}
-        >
-          {content}
-        </ReactMarkdown>
-        {AfterDataComponent && data && (<AfterDataComponent data={data} />)}
-      </div>
-    );
-  }
-);
+  return (
+    <>
+      {BeforeDataComponent && data && <BeforeDataComponent data={data} />}
+      <ReactMarkdown
+        remarkPlugins={[
+          remarkGfm,
+          [remarkFrontMatter, { type: "yaml", marker: "-" }],
+          remarkParseFrontmatter,
+          ...(remarkPlugins || []),
+        ]}
+        remarkRehypeOptions={{
+          ...(remarkRehypeOptions || {}),
+          handlers: {
+            ...(remarkRehypeOptions?.handlers || {}),
+            yaml,
+          },
+        }}
+        {...props}
+      >
+        {content}
+      </ReactMarkdown>
+      {AfterDataComponent && data && <AfterDataComponent data={data} />}
+    </>
+  );
+};

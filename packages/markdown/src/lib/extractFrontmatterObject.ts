@@ -1,4 +1,4 @@
-export const extractFrontmatterObject = (state: unknown): object => {
+export const extractFrontmatterObject = (state?: unknown): object => {
   if (typeof state !== "object" || state === null) return {};
   if (!("options" in state)) return {};
   if (typeof state.options !== "object" || state.options === null) return {};
