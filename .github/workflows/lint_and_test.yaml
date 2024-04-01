@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+  workflow_call:
 
 jobs:
-  lint:
+  lint_and_test:
+    name: Lint and Test
     runs-on: ubuntu-latest
 
     steps:
