@@ -25,6 +25,7 @@
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
     "@commitlint/format": "^19.0.3",
+    "@types/conventional-changelog": "^3.1.5",
     "@types/eslint": "^8",
     "@types/node": "^20.11.30",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
@@ -35,14 +36,16 @@
     "conventional-changelog-cli": "^4.1.0",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
-    "ts-node": "^10.9.2",
+    "isomorphic-git": "^1.25.6",
+    "tsx": "^4.7.1",
     "typescript": "^5.4.3",
     "typescript-eslint": "^7.4.0"
   },
   "scripts": {
     "postinstall": "husky",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "lint": "eslint . --ignore-path .gitignore --ignore-pattern packages/"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "lint": "eslint . --ignore-path .gitignore --ignore-pattern packages/",
+    "tag": ""
   },
   "dependenciesMeta": {
     "eslint@8.57.0": {
