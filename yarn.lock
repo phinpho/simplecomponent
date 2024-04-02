@@ -6419,6 +6419,7 @@ __metadata:
     eslint-plugin-node: "npm:^11.1.0"
     husky: "npm:^9.0.11"
     isomorphic-git: "npm:^1.25.6"
+    jest: "npm:^29.7.0"
     ts-jest: "npm:^29.1.2"
     tsx: "npm:^4.7.1"
     typescript: "npm:^5.4.3"
