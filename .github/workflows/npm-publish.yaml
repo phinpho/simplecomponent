@@ -51,4 +51,4 @@ jobs:
       - name: Publish
         run: yarn workspaces foreach -A --no-private npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
