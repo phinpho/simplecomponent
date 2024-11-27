@@ -1,12 +1,9 @@
-import { type ComponentType } from "react";
+import { useMemo, type ComponentPropsWithRef, type ComponentType } from "react";
 import { default as ReactMarkdown } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkFrontMatter from "remark-frontmatter";
 import remarkParseFrontmatter from "remark-parse-frontmatter";
-import { useMarkdown } from "./hooks/useMarkdown";
 import { useHandlers } from "./hooks/useHandlers";
-
-type ReactMarkdownProps = Parameters<typeof ReactMarkdown>[0];
 
 /**
  * The properties of the `Markdown` component.
@@ -17,12 +14,7 @@ type ReactMarkdownProps = Parameters<typeof ReactMarkdown>[0];
  *
  * @see {@link https://www.npmjs.com/package/react-markdown}
  */
-export interface MarkdownProps extends ReactMarkdownProps {
-  /**
-   * The URL to fetch the markdown content from.
-   */
-  href?: string;
-
+export type MarkdownProps = ComponentPropsWithRef<typeof ReactMarkdown> & {
   /**
    * The markdown content to render (can be used instead of `children`)
    */
@@ -47,8 +39,7 @@ export interface MarkdownProps extends ReactMarkdownProps {
  *
  * @see {@link https://www.npmjs.com/package/react-markdown}
  */
-export const Markdown = ({
-  href,
+const Markdown: ComponentType<MarkdownProps> = ({
   value,
   AfterDataComponent,
   BeforeDataComponent,
@@ -56,8 +47,14 @@ export const Markdown = ({
   remarkPlugins,
   remarkRehypeOptions,
   ...props
-}: MarkdownProps) => {
-  const { content } = useMarkdown({ value, children, href });
+}) => {
+  const content = useMemo(() => {
+    if (children && typeof children === "string") {
+      return children;
+    }
+    return value;
+  }, [value, children]);
+
   const { data, yaml } = useHandlers();
 
   return (
@@ -85,3 +82,5 @@ export const Markdown = ({
     </>
   );
 };
+
+export default Markdown;
