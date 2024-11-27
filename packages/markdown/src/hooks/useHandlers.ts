@@ -1,19 +1,19 @@
-import { useCallback, useState } from "react";
-import { extractFrontmatterObject } from "../lib/extractFrontmatterObject";
+import { useCallback, useState } from 'react'
+import { extractFrontmatterObject } from '../lib/extractFrontmatterObject'
 
 export const useHandlers = () => {
-  const [data, setData] = useState<object>({});
+  const [data, setData] = useState<object>({})
 
   const yaml = useCallback(
     (state: unknown) => {
-      setData(extractFrontmatterObject(state));
-      return undefined;
+      setData(extractFrontmatterObject(state))
+      return undefined
     },
-    [setData]
-  );
+    [setData],
+  )
 
   return {
     data,
     yaml,
-  };
+  }
 }

@@ -1,9 +1,9 @@
-import { useMemo, type ComponentPropsWithRef, type ComponentType } from "react";
-import { default as ReactMarkdown } from "react-markdown";
-import remarkGfm from "remark-gfm";
-import remarkFrontMatter from "remark-frontmatter";
-import remarkParseFrontmatter from "remark-parse-frontmatter";
-import { useHandlers } from "./hooks/useHandlers";
+import { useMemo, type ComponentPropsWithRef, type ComponentType } from 'react'
+import { default as ReactMarkdown } from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import remarkFrontMatter from 'remark-frontmatter'
+import remarkParseFrontmatter from 'remark-parse-frontmatter'
+import { useHandlers } from './hooks/useHandlers'
 
 /**
  * The properties of the `Markdown` component.
@@ -18,17 +18,17 @@ export type MarkdownProps = ComponentPropsWithRef<typeof ReactMarkdown> & {
   /**
    * The markdown content to render (can be used instead of `children`)
    */
-  value?: string;
+  value?: string
 
   /**
    * The component rendered after the markdown, it receives the extracted data from the frontmatter as a `data` prop
    */
-  AfterDataComponent?: ComponentType<{ data: object }>;
+  AfterDataComponent?: ComponentType<{ data: object }>
 
   /**
    * The component rendered before the markdown, it receives the extracted from the frontmatter as a `data` prop
    */
-  BeforeDataComponent?: ComponentType<{ data: object }>;
+  BeforeDataComponent?: ComponentType<{ data: object }>
 }
 
 /**
@@ -49,13 +49,13 @@ const Markdown: ComponentType<MarkdownProps> = ({
   ...props
 }) => {
   const content = useMemo(() => {
-    if (children && typeof children === "string") {
-      return children;
+    if (children && typeof children === 'string') {
+      return children
     }
-    return value;
-  }, [value, children]);
+    return value
+  }, [value, children])
 
-  const { data, yaml } = useHandlers();
+  const { data, yaml } = useHandlers()
 
   return (
     <>
@@ -63,7 +63,7 @@ const Markdown: ComponentType<MarkdownProps> = ({
       <ReactMarkdown
         remarkPlugins={[
           remarkGfm,
-          [remarkFrontMatter, { type: "yaml", marker: "-" }],
+          [remarkFrontMatter, { type: 'yaml', marker: '-' }],
           remarkParseFrontmatter,
           ...(remarkPlugins || []),
         ]}
@@ -80,7 +80,7 @@ const Markdown: ComponentType<MarkdownProps> = ({
       </ReactMarkdown>
       {AfterDataComponent && data && <AfterDataComponent data={data} />}
     </>
-  );
-};
+  )
+}
 
-export default Markdown;
+export default Markdown
