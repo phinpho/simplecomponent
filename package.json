@@ -2,7 +2,7 @@
   "name": "simplecomponent",
   "description": "React components made simple",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Rodolfo Pereira",
     "email": "phinpho@gmail.com",

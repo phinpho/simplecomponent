@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/phinpho/simplecomponent/compare/v0.1.0...v0.1.1) (2024-11-28)
+
+
+### Bug Fixes
+
+* **markdown:** re-export the react-markdown types ([66377b0](https://github.com/phinpho/simplecomponent/commit/66377b000e8a59844ba3822eaa7080755f15762f))
+
+
+
 # [0.1.0](https://github.com/phinpho/simplecomponent/compare/v0.0.2...v0.1.0) (2024-11-27)
 
 
