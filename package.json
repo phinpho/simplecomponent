@@ -17,7 +17,7 @@
     "packages/*"
   ],
   "engines": {
-    "node": ">=22.11.0 <24"
+    "bun": ">=1.2.8"
   },
   "packageManager": "yarn@4.5.3",
   "devDependencies": {

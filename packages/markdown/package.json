@@ -41,7 +41,7 @@
   "scripts": {
     "lint": "eslint",
     "test": "jest",
-    "prepack": "yarn install --immutable && yarn build",
+    "prepack": "bun install --frozen-lockfile && bun run build",
     "build": "tsc -p ./tsconfig.build.json"
   },
   "devDependencies": {
