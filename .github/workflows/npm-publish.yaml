@@ -24,7 +24,7 @@ jobs:
         run: bun run --filter "*" lint
 
       - name: Test
-        run: bun tun --filter "*" test
+        run: bun run --filter "*" test
 
   build:
     name: Build and Publish
