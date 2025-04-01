@@ -12,10 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version-file: "package.json"
+          bun-version: "canary"
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -35,10 +35,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version-file: "package.json"
+          bun-version: "canary"
           registry-url: "https://registry.npmjs.org"
           scope: "@simplecomponent"
 
@@ -49,6 +49,6 @@ jobs:
         run: bun run --filter "*" build
 
       - name: Publish
-        run: bun publish --filter "*" --access public --tag latest
+        run: for pkg in $(ls packages); do cd packages/$pkg && bun publish --access public && cd -; done
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
